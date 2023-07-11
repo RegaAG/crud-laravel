@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\mahasiswa;
+use Illuminate\Support\Facades\File;
 
 class MahasiswaController extends Controller
 {
@@ -32,13 +33,20 @@ class MahasiswaController extends Controller
         $request->validate([
             'nama' => 'required',
             'nim' => 'required',
-            'prodi' => 'required'
+            'prodi' => 'required',
+            'foto' => 'required|mimes:jpeg,jpg,png'
         ]);
+
+        $foto_file = $request->file('foto');
+        $foto_ektensi = $foto_file->extension();
+        $foto_nama = date('ymdhis'). '.' . $foto_ektensi;
+        $foto_file->move(public_path('foto'), $foto_nama);
 
         $data = [
             'nama' => $request->input('nama'),
             'nim' => $request->input('nim'),
-            'prodi' => $request->input('prodi')
+            'prodi' => $request->input('prodi'),
+            'foto' => $foto_nama
         ];
 
         mahasiswa::create($data);
@@ -62,6 +70,7 @@ class MahasiswaController extends Controller
     {
         $data = mahasiswa::where('id', $id)->first();
         return view('mahasiswa.update')->with('data', $data);
+
     }
 
     /**
@@ -81,8 +90,27 @@ class MahasiswaController extends Controller
             'prodi' => $request->input('prodi')
         ];
 
+        if ($request->hasFile('foto')) {
+            $request->validate([
+                'foto' => 'required|mimes:jpeg,jpg,png'
+            ]);
+
+            $foto_file = $request->file('foto');
+            $foto_ektensi = $foto_file->extension();
+            $foto_nama = date('ymdhis'). '.' . $foto_ektensi;
+            $foto_file->move(public_path('foto'), $foto_nama);
+
+            $data = mahasiswa::where('id', $id)->first();
+            File::delete(public_path('foto').'/'.$data->foto);
+
+            $data = [
+                'foto' => $foto_nama
+            ];
+        }
+
         mahasiswa::where('id', $id)->update($data);
         return redirect('mahasiswa');
+
     }
 
     /**
@@ -90,6 +118,8 @@ class MahasiswaController extends Controller
      */
     public function destroy(string $id)
     {
+        $data = mahasiswa::where('id', $id)->first();
+        File::delete(public_path('foto').'/'.$data->foto);
         mahasiswa::where('id', $id)->delete();
         return redirect('mahasiswa');
     }

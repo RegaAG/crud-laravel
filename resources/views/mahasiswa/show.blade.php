@@ -12,9 +12,11 @@
 <body>
     <div class="container mt-5">
         <h1>Show</h1>
+        <img style="max-width: 150px; max-height: 130px" src="{{ url('foto' . '/' . $data->foto) }}" alt="">
         <h3>Nama : {{ $data->nama }}</h3>
         <h3>Nim : {{ $data->nim }}</h3>
         <h3>Prodi : {{ $data->prodi }}</h3>
+        <a href="/mahasiswa" class="btn btn-info"> Back </a>
     </div>
 </body>
 

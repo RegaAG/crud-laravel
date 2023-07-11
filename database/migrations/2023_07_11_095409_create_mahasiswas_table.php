@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nama');
             $table->integer('nim')->unique();
             $table->string('prodi');
+            $table->string('foto');
             $table->timestamps();
         });
     }

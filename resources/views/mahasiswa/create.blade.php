@@ -13,7 +13,7 @@
     <div class="container mt-5">
         <h1>Tambah Data</h1>
 
-        <form method="post" action="/mahasiswa">
+        <form method="post" action="/mahasiswa" enctype="multipart/form-data">
             @csrf
             <div class="my-3">
                 <h5>Nama : </h5>
@@ -29,6 +29,10 @@
                 <h5>Prodi : </h5>
                 <input type="text" name="prodi" id="prodi" placeholder="Masukan Prodi" autocomplete="off"
                     required>
+            </div>
+            <div class="my-3">
+                <h5>Foto : </h5>
+                <input type="file" name="foto" id="foto" required>
             </div>
             <button class="btn btn-primary mt-5" type="submit">Submit</button>
         </form>

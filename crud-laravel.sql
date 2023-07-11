@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 11, 2023 at 02:21 PM
+-- Generation Time: Jul 11, 2023 at 08:37 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -48,6 +48,7 @@ CREATE TABLE `mahasiswas` (
   `nama` varchar(255) NOT NULL,
   `nim` int(11) NOT NULL,
   `prodi` varchar(255) NOT NULL,
+  `foto` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -56,10 +57,8 @@ CREATE TABLE `mahasiswas` (
 -- Dumping data for table `mahasiswas`
 --
 
-INSERT INTO `mahasiswas` (`id`, `nama`, `nim`, `prodi`, `created_at`, `updated_at`) VALUES
-(1, 'Rega Anton Giapierro', 210769, 'Informatika', NULL, NULL),
-(2, 'Anisa', 217779, 'Fisika', NULL, '2023-07-11 05:10:05'),
-(5, 'Yoan', 219648, 'Informatika', '2023-07-11 05:06:35', '2023-07-11 05:10:12');
+INSERT INTO `mahasiswas` (`id`, `nama`, `nim`, `prodi`, `foto`, `created_at`, `updated_at`) VALUES
+(5, 'Anisa', 216575, 'Kimia', '230711063614.jpg', '2023-07-11 11:20:06', '2023-07-11 11:36:14');
 
 -- --------------------------------------------------------
 
@@ -79,11 +78,11 @@ CREATE TABLE `migrations` (
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2023_07_11_094856_create_mahasiswa_table', 1),
-(6, '2014_10_12_000000_create_users_table', 2),
-(7, '2014_10_12_100000_create_password_reset_tokens_table', 2),
-(8, '2019_08_19_000000_create_failed_jobs_table', 2),
-(9, '2019_12_14_000001_create_personal_access_tokens_table', 2),
-(10, '2023_07_11_095409_create_mahasiswas_table', 2);
+(11, '2014_10_12_000000_create_users_table', 2),
+(12, '2014_10_12_100000_create_password_reset_tokens_table', 2),
+(13, '2019_08_19_000000_create_failed_jobs_table', 2),
+(14, '2019_12_14_000001_create_personal_access_tokens_table', 2),
+(15, '2023_07_11_095409_create_mahasiswas_table', 2);
 
 -- --------------------------------------------------------
 
@@ -198,7 +197,7 @@ ALTER TABLE `mahasiswas`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`

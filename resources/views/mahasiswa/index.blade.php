@@ -17,6 +17,7 @@
             <thead>
                 <tr>
                     <th scope="col">No</th>
+                    <th scope="col">Foto</th>
                     <th scope="col">Nama</th>
                     <th scope="col">NIM</th>
                     <th scope="col">Prodi</th>
@@ -27,6 +28,8 @@
                 @foreach ($datas as $data)
                     <tr>
                         <th scope="row">{{ $loop->iteration }}</th>
+                        <td><img style="width: 50px; height=50px" src="{{ url('foto' . '/' . $data->foto) }}"
+                                alt=""></td>
                         <td>{{ $data->nama }}</td>
                         <td>{{ $data->nim }}</td>
                         <td>{{ $data->prodi }}</td>
@@ -34,7 +37,8 @@
                             <div class="btn-group">
                                 <a class="btn btn-primary" href="{{ 'mahasiswa/' . $data->id }}">Detail</a>
                                 <a class="btn btn-warning mx-2" href="{{ 'mahasiswa/' . $data->id . '/edit' }}">Edit</a>
-                                <form action="{{ 'mahasiswa/' . $data->id }}" method="POST">
+                                <form onsubmit="return confirm('Yakin Mau Hapus ?')"
+                                    action="{{ 'mahasiswa/' . $data->id }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Hapus</button>

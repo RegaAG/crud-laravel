@@ -13,7 +13,7 @@
     <div class="container mt-5">
         <h1>Edit Data</h1>
 
-        <form method="post" action="/mahasiswa/{{ $data->id }}">
+        <form method="post" action="/mahasiswa/{{ $data->id }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="my-3">
@@ -30,6 +30,14 @@
                 <h5>Prodi : </h5>
                 <input type="text" name="prodi" id="prodi" placeholder="Masukan Prodi" autocomplete="off"
                     value="{{ $data->prodi }}" required>
+            </div>
+            <div class="my-3">
+                <img style="max-width: 150px; max-height: 130px" src="{{ url('foto' . '/' . $data->foto) }}"
+                    alt="">
+            </div>
+            <div class="my-3">
+                <h5>Foto : </h5>
+                <input type="file" name="foto" id="foto" required>
             </div>
             <button class="btn btn-primary mt-5" type="submit">Update</button>
         </form>
